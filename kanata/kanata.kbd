@@ -16,7 +16,7 @@
 	lmet							spc														lft		up		down	rght
 )
 
-;; Defining Variables
+;; Define Variables
 (defvar
 	tap-time 200
 	hold-time 200
@@ -28,18 +28,55 @@
 	accel-time-mouse 1000
 	min-mouse 1
 	max-mouse 15
+
+
+	left-hand-keys (
+		q w e r t
+		a s d f g
+		z x c v b
+	)
+	right-hand-keys (
+		y u i o p
+		h j k l ;
+		n m , . /
+	)
 )
 
+;; Define fake keys
+(deffakekeys
+	to-base (layer-switch base)
+)
+
+;; Define aliasis
 (defalias
+  ;; Modifier keys help
+	tap (multi
+		(layer-switch normal)
+		(on-idle-fakekey to-base tap 20)
+	)
+
 	;; Modifier keys
-	a-mod (tap-hold $tap-time $hold-time _ lmet)
-	s-mod (tap-hold $tap-time $hold-time _ lalt)
-	d-mod (tap-hold $tap-time $hold-time _ lsft)
-	f-mod (tap-hold $tap-time $hold-time _ lctl)
-	j-mod (tap-hold $tap-time $hold-time _ rctl)
-	k-mod (tap-hold $tap-time $hold-time _ rsft)
-	l-mod (tap-hold $tap-time $hold-time _ ralt)
-	;-mod (tap-hold $tap-time $hold-time _ rmet)
+
+	;; a-mod (tap-hold $tap-time $hold-time _ lmet)
+	;; s-mod (tap-hold $tap-time $hold-time _ lalt)
+	;; d-mod (tap-hold $tap-time $hold-time _ lsft)
+	;; f-mod (tap-hold $tap-time $hold-time _ lctl)
+	;; j-mod (tap-hold $tap-time $hold-time _ rctl)
+	;; k-mod (tap-hold $tap-time $hold-time _ rsft)
+	;; l-mod (tap-hold $tap-time $hold-time _ ralt)
+	;; ;-mod (tap-hold $tap-time $hold-time _ rmet)
+
+	a-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lmet $left-hand-keys)
+	s-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lalt $left-hand-keys)
+	d-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lctl $left-hand-keys)
+	f-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lsft $left-hand-keys)
+	j-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rsft $right-hand-keys)
+	k-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rctl $right-hand-keys)
+	l-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) ralt $right-hand-keys)
+	;-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rmet $right-hand-keys)
+
+
+	;; Cap-Escape; Obeying AHK
 	c-esc (tap-hold $tap-time $hold-time esc _)
 
 	;; Switcher keys
@@ -52,7 +89,7 @@
 	ms-lyr (layer-switch mouse)
 	vm-lyr (layer-switch vim)
 	nm-lyr (layer-switch normal)
-	df-lyr (layer-switch base)
+	bs-lyr (layer-switch base)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -105,6 +142,7 @@
 	azot z
 )
 
+;; Defining Layers
 (deflayer base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrd	_		_		_		_		_		_		_		_		_		_		_		_		_		_
@@ -118,7 +156,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrd	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			lrld	_		_		_		_		_		_		_		_		_		_		_		_		_		
-	_		@ms-lyr @vm-lyr	@df-lyr	_		@swchrd	_		_		_		_		_		_		_		_
+	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrd	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 )
@@ -127,7 +165,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrm	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
-	_		@df-lyr @vm-lyr	@df-lyr	_		@swchrm	_		_		_		_		_		_		_		_
+	_		@bs-lyr @vm-lyr	@bs-lyr	_		@swchrm	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 )
@@ -136,14 +174,14 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrv	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
-	_		@ms-lyr @df-lyr	@df-lyr	_		@swchrv	_		_		_		_		_		_		_		_
+	_		@ms-lyr @bs-lyr	@bs-lyr	_		@swchrv	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 )
 
 (deflayer layer-switcher-normal
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrm	@df-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrm	@bs-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_				_		_
