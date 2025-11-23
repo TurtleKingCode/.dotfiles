@@ -43,7 +43,7 @@
 	c-esc (tap-hold $tap-time $hold-time esc _)
 
 	;; Switcher keys
-	swchrd (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-default))
+	swchrd (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-base))
 	swchrm (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-mouse))
 	swchrv (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-vim))
 	swchrn (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-normal))
@@ -52,7 +52,7 @@
 	ms-lyr (layer-switch mouse)
 	vm-lyr (layer-switch vim)
 	nm-lyr (layer-switch normal)
-	df-lyr (layer-switch default)
+	df-lyr (layer-switch base)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -105,7 +105,7 @@
 	azot z
 )
 
-(deflayer default
+(deflayer base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrd	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
@@ -114,7 +114,7 @@
 	_								_														_		_		_		_
 )
 
-(deflayer layer-switcher-default
+(deflayer layer-switcher-base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrd	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			lrld	_		_		_		_		_		_		_		_		_		_		_		_		_		
