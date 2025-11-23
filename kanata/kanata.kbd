@@ -56,25 +56,14 @@
 	)
 
 	;; Modifier keys
-
-	;; a-mod (tap-hold $tap-time $hold-time _ lmet)
-	;; s-mod (tap-hold $tap-time $hold-time _ lalt)
-	;; d-mod (tap-hold $tap-time $hold-time _ lsft)
-	;; f-mod (tap-hold $tap-time $hold-time _ lctl)
-	;; j-mod (tap-hold $tap-time $hold-time _ rctl)
-	;; k-mod (tap-hold $tap-time $hold-time _ rsft)
-	;; l-mod (tap-hold $tap-time $hold-time _ ralt)
-	;; ;-mod (tap-hold $tap-time $hold-time _ rmet)
-
 	a-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lmet $left-hand-keys)
 	s-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lalt $left-hand-keys)
-	d-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lctl $left-hand-keys)
-	f-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lsft $left-hand-keys)
-	j-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rsft $right-hand-keys)
-	k-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rctl $right-hand-keys)
+	d-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lsft $left-hand-keys)
+	f-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lctl $left-hand-keys)
+	j-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rctl $right-hand-keys)
+	k-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rsft $right-hand-keys)
 	l-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) ralt $right-hand-keys)
 	;-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rmet $right-hand-keys)
-
 
 	;; Cap-Escape; Obeying AHK
 	c-esc (tap-hold $tap-time $hold-time esc _)
