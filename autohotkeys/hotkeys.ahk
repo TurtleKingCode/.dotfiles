@@ -347,15 +347,16 @@ Volume_Down::End
 }
 
 ; Load email hotstrings
-if FileExist(A_ScriptDir "\private\autohotkeys\emailhotstrings.ahk")
+if FileExist(A_ScriptDir "..\private\autohotkeys\emailhotstrings.ahk")
 {
-    #Include private\autohotkeys\emailhotstrings.ahk
+    #Include ..\private\autohotkeys\emailhotstrings.ahk
 }
+
 ; Email Hotstring Format
-;:*:@@p::
-;{
-;	Send "personal.email@gmail.com"
-;}
+; :*:@@p::
+; {
+; 	Send "personal.email@gmail.com"
+; }
 
 ; #Hotstring EndChars ()[]{}:;'"/\,.?!`n `t
 
