@@ -17,6 +17,22 @@
 	}
 }
 
+!w::
+{
+	; Attempt to find a window with the executable name 'wezterm-gui.exe'
+	if WinExist("ahk_exe wezterm-gui.exe")
+	{
+		; If found, activate and bring it to the foreground
+		WinActivate
+		WinShow
+	}
+	else
+	{
+		; If not found, run a new instance of Windows Terminal
+		Run "C:\Program Files\WezTerm\wezterm-gui.exe"
+	}
+}
+
 
 ![::
 {
