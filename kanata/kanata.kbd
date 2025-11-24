@@ -56,14 +56,14 @@
 	)
 
 	;; Modifier keys
-	a-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lmet $left-hand-keys)
-	s-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lalt $left-hand-keys)
-	d-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lsft $left-hand-keys)
-	f-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) lctl $left-hand-keys)
-	j-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rctl $right-hand-keys)
-	k-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rsft $right-hand-keys)
-	l-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) ralt $right-hand-keys)
-	;-mod (tap-hold-release-keys $tap-time $hold-time (multi _ @tap) rmet $right-hand-keys)
+	a-mod (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
+	s-mod (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
+	d-mod (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
+	f-mod (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lctl $left-hand-keys)
+	j-mod (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rctl $right-hand-keys)
+	k-mod (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rsft $right-hand-keys)
+	l-mod (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
+	'-mod (tap-hold-release-keys $tap-time $hold-time (multi ' @tap) rmet $right-hand-keys)
 
 	;; Cap-Escape; Obeying AHK
 	c-esc (tap-hold $tap-time $hold-time esc _)
@@ -79,6 +79,12 @@
 	vm-lyr (layer-switch vim)
 	nm-lyr (layer-switch normal)
 	bs-lyr (layer-switch base)
+	VM-lyr (layer-switch VimNormal)
+
+	;; Vim Advanced aliases
+	Vm-i (layer-switch VimInsert)
+	Vm-a (layer-switch VimInsert)
+	Vm-esc (layer-switch VimNormal)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -136,14 +142,14 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrd	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
-	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrd	_		@j-mod	@k-mod	@l-mod	@ms-tog	@;-mod	_		_
+	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrd	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
 	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 )
 
 (deflayer layer-switcher-base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrd	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrd	@nm-lyr	@VM-lyr	_		_		_		_		_		_		_		_		_		_		_		_
 			lrld	_		_		_		_		_		_		_		_		_		_		_		_		_		
 	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrd	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
@@ -211,6 +217,24 @@
 	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
 	_		_		_		_		@vm-tog	_		end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
+)
+
+(deflayer VimNormal
+	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrv	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+			_		_		_		_		_		_		@Vm-i	_		_		_		_		_		_		_		
+	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
+	_		_		_		_		_		_		end		pgdn	_		_		_				_		_
+	_								_														_		_		_		_
+)
+
+(deflayer VimInsert
+	esc		f1		f2		f3		f4		f5		f6		f7		f8		f9		f10		f11		f12		del
+	@swchrn	1		2		3		4		5		6		7		8		9		0		-		=		bspc	home
+			q		w		e		r		t		y		u		i		o		p		[		]		\		pgup		
+	@Vm-esc	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
+	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
+	lmet							spc														lft		up		down	rght
 )
 
 (deflayer apps
