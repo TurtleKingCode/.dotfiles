@@ -1,5 +1,5 @@
 (defcfg
-  process-unmapped-keys (all-except rctl ralt lctrl lalt)
+  process-unmapped-keys (all-except rctl ralt lalt)
   log-layer-changes no
   concurrent-tap-hold yes
   danger-enable-cmd yes
@@ -14,6 +14,7 @@
 	caps	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft			end
 	lmet							spc														lft		up		down	rght
+	lctl
 )
 
 ;; Define Variables
@@ -147,6 +148,7 @@
 	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrd	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
 	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer layer-switcher-base
@@ -156,6 +158,7 @@
 	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrd	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer layer-switcher-mouse
@@ -165,6 +168,7 @@
 	_		@bs-lyr @vm-lyr	@bs-lyr	_		@swchrm	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer layer-switcher-vim
@@ -174,6 +178,7 @@
 	_		@ms-lyr @bs-lyr	@bs-lyr	_		@swchrv	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer layer-switcher-normal
@@ -183,6 +188,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer normal
@@ -192,6 +198,7 @@
 	caps	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
 	lmet							spc														lft		up		down	rght
+	lctl
 )
 
 (deflayer mouse
@@ -201,6 +208,7 @@
 	_		@m-slw	@m-fst	mrtp	mlft	@swchrm	mlft	@m-lft	@m-dwn	@m-rgt	_		@ms-tog	_		_
 	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				_		_
 	_								@m-slw													_		_		_		_
+	_
 )
 
 (deflayer mouse-left
@@ -210,6 +218,7 @@
 	_		_		_		@m-lft	@m-dwn	@m-rgt	mlft	_		_		_		_		_		_		_
 	_		@msl-tog	_	_		@mw-up	@mw-dwn	_		_		_		_		_				_		_
 	_								@m-slw													_		_		_		_
+	_
 )
 
 (deflayer vim
@@ -219,6 +228,7 @@
 	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
 	_		_		_		_		@vm-tog	_		end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer VimNormal
@@ -228,6 +238,7 @@
 	_		_		_		_		_		_		lft		down	up		rght	_		_		_		_
 	_		_		_		_		_		@Vm-b	end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer VimInsert
@@ -237,6 +248,7 @@
 	@Vm-esc	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
 	lmet							spc														lft		up		down	rght
+	_
 )
 
 (deflayer apps
@@ -246,6 +258,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		@azot	_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
+	_
 )
 
 (deflayer template
@@ -255,4 +268,5 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
+	_
 )
