@@ -85,6 +85,8 @@
 	Vm-i (layer-switch VimInsert)
 	Vm-a (layer-switch VimInsert)
 	Vm-esc (layer-switch VimNormal)
+	Vm-w (multi lctl rght)
+	Vm-b (multi lctl left)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -221,10 +223,10 @@
 
 (deflayer VimNormal
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrv	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-			_		_		_		_		_		_		@Vm-i	_		_		_		_		_		_		_		
-	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
-	_		_		_		_		_		_		end		pgdn	_		_		_				_		_
+	@swchrn	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+			_		@Vm-w	_		_		_		_		@Vm-i	_		_		_		_		_		_		_		
+	_		_		_		_		_		_		lft		down	up		rght	_		_		_		_
+	_		_		_		_		_		@Vm-b	end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
 )
 
