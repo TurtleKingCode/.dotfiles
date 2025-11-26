@@ -70,7 +70,7 @@
 	c-esc (tap-hold $tap-time $hold-time esc _)
 
 	;; Switcher keys
-	swchrd (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-base))
+	swchrb (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-base))
 	swchrm (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-mouse))
 	swchrv (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-vim))
 	swchrn (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-normal))
@@ -143,9 +143,9 @@
 ;; Defining Layers
 (deflayer base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrd	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrb	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
-	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrd	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
+	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrb	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
 	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 	_
@@ -153,9 +153,9 @@
 
 (deflayer layer-switcher-base
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrd	@nm-lyr	@VM-lyr	_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrb	@nm-lyr	@VM-lyr	_		_		_		_		_		_		_		_		_		_		_		_
 			lrld	_		_		_		_		_		_		_		_		_		_		_		_		_		
-	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrd	_		_		_		_		_		_		_		_
+	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrb	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
 	_
