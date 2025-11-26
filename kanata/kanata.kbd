@@ -59,14 +59,14 @@
 	)
 
 	;; Modifier keys
-	a-mod (tap-hold-release-keys $tap-time $hold-time (multi a @tap) lmet $left-hand-keys)
-	s-mod (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
-	d-mod (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lsft $left-hand-keys)
-	f-mod (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lctl $left-hand-keys)
-	j-mod (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rctl $right-hand-keys)
-	k-mod (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rsft $right-hand-keys)
-	l-mod (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
-	'-mod (tap-hold-release-keys $tap-time $hold-time (multi ' @tap) rmet $right-hand-keys)
+	a-mod (tap-hold $tap-time $hold-time a lmet)
+	s-mod (tap-hold $tap-time $hold-time s lalt)
+	d-mod (tap-hold $tap-time $hold-time d lsft)
+	f-mod (tap-hold $tap-time $hold-time f lctl)
+	j-mod (tap-hold $tap-time $hold-time j rctl)
+	k-mod (tap-hold $tap-time $hold-time k rsft)
+	l-mod (tap-hold $tap-time $hold-time l ralt)
+	'-mod (tap-hold $tap-time $hold-time ' rmet)
 
 	;; Cap-Escape; Obeying AHK
 	c-esc (tap-hold $tap-time $hold-time esc _)
