@@ -240,11 +240,11 @@
 
 (deflayer VimNormal
 	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
-	@swchrn	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
+	@swchrn	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		bspc	XX
 			XX		@Vm-w	XX		@Vm-r	XX		XX		@Vm-u	@Vm-i	XX		XX		@Vm-[	@Vm-]	XX		XX
 	@Vm-esc	@Vm-a	XX		XX		XX		XX		lft		down	up		rght	XX		XX		XX		XX
-	XX		XX		bspc	XX		XX		@Vm-b	end		pgdn	XX		XX		XX				XX		XX
-	XX								XX														XX		XX		XX		XX
+	lsft	XX		bspc	XX		XX		@Vm-b	end		pgdn	XX		XX		XX				rsft	end
+	lmet							spc														lft		up		down	rght
 	XX
 )
 
