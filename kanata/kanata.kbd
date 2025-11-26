@@ -1,3 +1,5 @@
+; kanata.kbd
+
 (defcfg
   process-unmapped-keys (all-except rctl ralt lalt)
   log-layer-changes no
@@ -84,10 +86,12 @@
 
 	;; Vim Advanced aliases
 	Vm-i (layer-switch VimInsert)
-	Vm-a (layer-switch VimInsert)
-	Vm-esc (layer-switch VimNormal)
+	Vm-a (multi rght @Vm-i)
+	Vm-esc @VM-lyr
 	Vm-w (multi lctl rght)
 	Vm-b (multi lctl left)
+	Vm-[ (multi lctrl up)
+	Vm-] (multi lctrl down)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -232,13 +236,13 @@
 )
 
 (deflayer VimNormal
-	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrn	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-			_		@Vm-w	_		_		_		_		@Vm-i	_		_		_		_		_		_		_		
-	_		_		_		_		_		_		lft		down	up		rght	_		_		_		_
-	_		_		_		_		_		@Vm-b	end		pgdn	_		_		_				_		_
-	_								_														_		_		_		_
-	_
+	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
+	@swchrn	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
+			XX		@Vm-w	XX		XX		XX		XX		XX		@Vm-i	XX		XX		Vm-[	Vm-]	XX		XX
+	@Vm-esc	@Vm-a	XX		XX		XX		XX		lft		down	up		rght	XX		XX		XX		XX
+	XX		XX		XX		XX		XX		@Vm-b	end		pgdn	XX		XX		XX				XX		XX
+	XX								XX														XX		XX		XX		XX
+	XX
 )
 
 (deflayer VimInsert
