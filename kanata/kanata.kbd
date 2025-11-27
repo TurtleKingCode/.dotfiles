@@ -1,7 +1,7 @@
 ;; kanata.kbd
 
 (defcfg
-  process-unmapped-keys (all-except rctl ralt lalt)
+  process-unmapped-keys (all-except rctl ralt)
   log-layer-changes no
   concurrent-tap-hold yes
   danger-enable-cmd yes
@@ -16,7 +16,7 @@
 	caps	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft			end
 	lmet							spc														lft		up		down	rght
-	lctl
+	lctl	lalt
 )
 
 ;; Define Variables
@@ -82,12 +82,12 @@
 	vm-lyr (layer-switch vim)
 	nm-lyr (layer-switch normal)
 	bs-lyr (layer-switch base)
-	VM-lyr (layer-switch VimNormal)
 
 	;; Vim Advanced aliases
+	VM-lyr (layer-switch VimNormal)
 	Vm-i (layer-switch VimInsert)
 	Vm-a (multi rght @Vm-i)
-	Vm-esc @VM-lyr
+	Vm-esc (layer-switch VimNormal)
 	Vm-w (multi lctl rght)
 	Vm-b (multi lctl left)
 	Vm-[ (multi lctl up)
@@ -118,6 +118,21 @@
 
 	;; Vim Toggle
 	vm-tog (tap-hold $tap-time $hold-time _ (layer-toggle vim))
+
+	azot z
+	;; Leader keys
+	l-lalt (tap-hold-press $tap-time $hold-time sldr lalt)
+	l-rsft (tap-hold-release $tap-time $hold-time (multi sldr (layer-switch leader)) rsft)
+)
+
+;; Defining Sequences & Virtual Keys
+(defseq
+    lr-ms (rsft m)
+    lr-bs (. .)
+)
+(defvirtualkeys
+	lr-ms (layer-switch mouse)
+	lr-bs (layer-switch base)
 )
 
 ;; Defining Layers
@@ -126,9 +141,9 @@
 	@swchrb	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
 	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrb	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
-	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_		_		_
+	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_				@l-rsft	_
 	_								_														_		_		_		_
-	_
+	_		@l-lalt
 )
 
 (deflayer layer-switcher-base
@@ -136,29 +151,29 @@
 	@swchrb	@nm-lyr	@VM-lyr	_		_		_		_		_		_		_		_		_		_		_		_
 			lrld	_		_		_		_		_		_		_		_		_		_		_		_		_		
 	_		@ms-lyr @vm-lyr	@bs-lyr	_		@swchrb	_		_		_		_		_		_		_		_
-	_		_		_		_		_		_		_		_		_		_		_		_		_
+	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer layer-switcher-mouse
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrm	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrm	@bs-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
 	_		@bs-lyr @vm-lyr	@bs-lyr	_		@swchrm	_		_		_		_		_		_		_		_
-	_		_		_		_		_		_		_		_		_		_		_		_		_
+	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer layer-switcher-vim
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
-	@swchrv	@nm-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
+	@swchrv	@bs-lyr	_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
 	_		@ms-lyr @bs-lyr	@bs-lyr	_		@swchrv	_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_		_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer layer-switcher-normal
@@ -168,7 +183,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer normal
@@ -178,7 +193,7 @@
 	caps	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
 	lmet							spc														lft		up		down	rght
-	lctl
+	lctrl	lalt
 )
 
 (deflayer mouse
@@ -186,9 +201,9 @@
 	@swchrm	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		mrtp	@m-up	@mw-lft	@mw-rgt	_		_		_		_		
 	_		@m-slw	@m-fst	mrtp	mlft	@swchrm	mlft	@m-lft	@m-dwn	@m-rgt	_		@ms-tog	_		_
-	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				_		_
+	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				@l-rsft		_
 	_								mlft													_		_		_		_
-	_
+	_		_
 )
 
 (deflayer mouse-left
@@ -198,7 +213,7 @@
 	_		_		_		@m-lft	@m-dwn	@m-rgt	mlft	_		_		_		_		_		_		_
 	_		@msl-tog	_	_		@mw-up	@mw-dwn	_		_		_		_		_				_		_
 	_								@m-slw													_		_		_		_
-	_
+	_		_
 )
 
 (deflayer vim
@@ -208,7 +223,7 @@
 	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
 	_		_		_		_		@vm-tog	_		end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer VimNormal
@@ -218,7 +233,7 @@
 	@Vm-esc	@Vm-a	XX		XX		XX		XX		lft		down	up		rght	XX		XX		XX		XX
 	lsft	XX		bspc	XX		XX		@Vm-b	end		pgdn	XX		XX		XX				rsft	end
 	lmet							spc														lft		up		down	rght
-	XX
+	XX		XX
 )
 
 (deflayer VimInsert
@@ -228,7 +243,17 @@
 	@Vm-esc	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
 	lmet							spc														lft		up		down	rght
-	_
+	_		_
+)
+
+(deflayer leader
+	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+	_		_		_		_		_		_		_		_		_		_		_		_		_		_		_
+			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
+	_		_		_		_		_		_		_		_		_		_		_		_		_		_
+	_		_		_		_		_		_		_		m		_		_		_				rsft	_
+	_								_														_		_		_		_
+	_		_
 )
 
 (deflayer apps
@@ -238,7 +263,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		@azot	_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
 
 (deflayer template
@@ -248,5 +273,5 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	_		_		_		_		_		_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_
+	_		_
 )
