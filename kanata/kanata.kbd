@@ -118,33 +118,6 @@
 
 	;; Vim Toggle
 	vm-tog (tap-hold $tap-time $hold-time _ (layer-toggle vim))
-
-	;; Testing Commands
-	;; test (cmd cmd "C:\Users\turtl\AppData\Local\Programs\Kanata\test.bat")
-	;; test (cmd cmd "start chrome")
-	;; achrome (cmd cmd "start chrome")
-
-	;; ToDo:
-	;; - Write a switching script that will take a function and perform the logi before switching to it
-	;; - Write a bunch of switching aliases that use the cmd kanata command to start cmd.exe and run the switching scipt
-	;; - For external programs that you want to run, set up a keyboard shortcut in that specific program's settings and then use aliases in kanata to trigger those shortocuts
-	;; - Create an app, symbol, and navigation layer
-	;; - Figure out whether tap-hold-press needs to be heldo to work
-		;; it turns out this does need to be held down in order to work
-		;; the difference between this and tap-hold is that tap-hold-press will only send the hold key if the key is held down for the hold time
-	;; - Take advantage of chords-v2 features; you can make space your leader key
-	;; - Figure out what chord-time variable means
-	;; - Consider having a key that switches between apps: (C-tab) or something like that
-		;; - you can just press the keys at the same time; you dont' have to press them in a sequence
-
-	;; Other layers tap-hold-press
-	;; mapr configured for both the glove80 and the macbook keyboard
-	mappr (tap-hold-press $tap-time 250 _ (layer-toggle apps))
-	;; msymb (tap-hold $tap-time $hold-time bspc (layer-toggle symb))
-	;; mnavi (tap-hold-press $tap-time $hold-time esc (layer-toggle navi))
-
-	;; Application Aliases
-	azot z
 )
 
 ;; Defining Layers
@@ -214,7 +187,7 @@
 			_		_		_		_		_		_		mrtp	@m-up	@mw-lft	@mw-rgt	_		_		_		_		
 	_		@m-slw	@m-fst	mrtp	mlft	@swchrm	mlft	@m-lft	@m-dwn	@m-rgt	_		@ms-tog	_		_
 	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				_		_
-	_								@m-slw													_		_		_		_
+	_								mlft													_		_		_		_
 	_
 )
 
