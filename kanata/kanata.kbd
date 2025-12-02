@@ -68,8 +68,8 @@
 	l-mod (tap-hold $tap-time $hold-time l ralt)
 	'-mod (tap-hold $tap-time $hold-time ' rmet)
 
-	;; Cap-Escape; Obeying AHK
-	c-esc (tap-hold $tap-time $hold-time esc _)
+	;; Cap-Escape
+	c-esc (tap-hold $tap-time 300 esc _)
 
 	;; Switcher keys
 	swchrb (tap-hold $tap-time $hold-time _ (layer-toggle layer-switcher-base))
@@ -85,16 +85,35 @@
 
 	;; Vim Advanced aliases
 	VM-lyr (layer-switch VimNormal)
-	Vm-i (layer-switch VimInsert)
-	Vm-a (multi rght @Vm-i)
-	Vm-esc (layer-switch VimNormal)
-	Vm-w (multi lctl rght)
-	Vm-b (multi lctl left)
-	Vm-[ (multi lctl up)
-	Vm-] (multi lctl down)
-	Vm-u (multi lctl z)
-	Vm-r (multi lctl y)
-	;; Vm-x (bspc) ;; failed
+	;; Normal Mode
+	Vn-i (layer-switch VimInsert)
+	Vn-a (multi rght @Vn-i)
+	Vn-esc (layer-switch VimNormal)
+	Vn-w (multi lctl rght)
+	Vn-b (multi lctl left)
+	Vn-[ (multi lctl up)
+	Vn-] (multi lctl down)
+	Vn-u (multi lctl z)
+	Vn-r (multi lctl y)
+	Vn-v (layer-switch VimVisual)
+	;; Vn-v (multi (on-press press-vkey shft) (layer-switch VimVisual))
+	;; Visual Mode
+	;; Vv-esc (multi (on-press release-vkey shft) (layer-switch VimNormal))
+	;; (esc (layer-switch default)) ; e.g. exit visual layer with Esc
+
+	;; Vv-i (layer-switch VimInsert)
+	;; Vv-a (multi rght @Vn-i)
+	Vv-esc (layer-switch VimNormal)
+	Vv-w (multi lsft lctl rght)
+	Vv-b (multi lsft lctl left)
+	Vv-[ (multi lsft lctl up)
+	Vv-] (multi lsft lctl down)
+	;; Vv-u (multi lctl z)
+	;; Vv-r (multi lctl y)
+	Vv-v (layer-switch VimVisual) 
+	Vv-c (multi (layer-switch VimInsert) C-x)
+	Vv-x (multi (layer-switch VimInsert) C-x)
+	Vv-y (multi (layer-switch VimNormal) C-c)
 
 	;; Mouse Motility
 	m-up (movemouse-up $intvl-mouse $dist-mouse)
@@ -121,18 +140,45 @@
 
 	azot z
 	;; Leader keys
-	l-lalt (tap-hold-press $tap-time $hold-time sldr lalt)
-	l-rsft (tap-hold-release $tap-time $hold-time (multi sldr (layer-switch leader)) rsft)
+	;; l-lalt (tap-hold-press $tap-time $hold-time sldr lalt)
+	;; l-rsft (tap-hold-release $tap-time $hold-time (multi sldr (layer-switch leader)) rsft)
+
+	v-in-word (macro C-left 50 C-S-rght)
+	;; v-word (macro )
+	;; v-paragraph ()
+	;; d-in-word ()
+	;; d-in-word ()
+	;; y-in-word ()
+	
 )
 
-;; Defining Sequences & Virtual Keys
-(defseq
-    lr-ms (rsft m)
-    lr-bs (. .)
-)
+;; Defining Sequences
+;; (defseq
+;; )
+
+;; Defining Virtual Keys
 (defvirtualkeys
-	lr-ms (layer-switch mouse)
-	lr-bs (layer-switch base)
+	;; vk-viw-macro @v-in-word
+	;; vk-viw (multi (layer-while-held VimVisual) (on-press tap-vkey @v-in-word))
+	shft lsft
+)
+
+;; Defining Chords v2
+(defchordsv2
+  ;; The chord: (v i d)
+  ;; The action: @switch-to-danger
+  ;; The timeout: 300ms (adjust as needed) 
+  ;; The release behavior: all-released (the layer will stay active as long as you hold any of the chord keys) 
+  ;; The disabled layers: () (apply to all layers) [cite: 609]
+  ;; (v i w) (on-press tap-vkey vk-viw) 300 first-release (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  ;; (v i w) @v-in-word 1000 all-released (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  ;; (v i p) @v-in-paragraph 150 all-released (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  ;; (d i w) @d-in-word 150 all-released (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  ;; (d a w) @d-in-word 150 all-released (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  ;; (y i w) @y-in-word 150 all-released (base normal mouse mouse-left vim layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal VimInsert)
+  (` 1) (layer-switch base) 200 all-released (base)
+  (` 2) (layer-switch VimNormal) 200 all-released (layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal mouse mouse-left vim VimNormal VimInsert VimVisual leader apps template)
+  (` 3) (layer-switch normal) 200 all-released (normal)
 )
 
 ;; Defining Layers
@@ -141,9 +187,9 @@
 	@swchrb	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
 	@c-esc	@a-mod	@s-mod	@d-mod @f-mod 	@swchrb	_		@j-mod	@k-mod	@l-mod	@ms-tog	@'-mod	_		_
-	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_				@l-rsft	_
+	_		@msl-tog	_	_		@vm-tog	_		_		_		_		_		_				_		_
 	_								_														_		_		_		_
-	_		@l-lalt
+	_		_
 )
 
 (deflayer layer-switcher-base
@@ -201,7 +247,7 @@
 	@swchrm	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		mrtp	@m-up	@mw-lft	@mw-rgt	_		_		_		_		
 	_		@m-slw	@m-fst	mrtp	mlft	@swchrm	mlft	@m-lft	@m-dwn	@m-rgt	_		@ms-tog	_		_
-	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				@l-rsft		_
+	_		@f-mod	@d-mod	_		_		_		@mw-dwn	@mw-up	_		_		_				_		_
 	_								mlft													_		_		_		_
 	_		_
 )
@@ -220,7 +266,7 @@
 	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 	@swchrv	_		_		_		_		_		_		_		_		_		_		_		_		_		_
 			_		_		_		_		_		_		_		_		_		_		_		_		_		_		
-	_		_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
+	lctl	_		_		_		_		@swchrv	lft		down	up		rght	_		_		_		_
 	_		_		_		_		@vm-tog	_		end		pgdn	_		_		_				_		_
 	_								_														_		_		_		_
 	_		_
@@ -229,21 +275,31 @@
 (deflayer VimNormal
 	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
 	@swchrn	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		bspc	XX
-			XX		@Vm-w	XX		@Vm-r	XX		XX		@Vm-u	@Vm-i	XX		XX		@Vm-[	@Vm-]	XX		XX
-	@Vm-esc	@Vm-a	XX		XX		XX		XX		lft		down	up		rght	XX		XX		XX		XX
-	lsft	XX		bspc	XX		XX		@Vm-b	end		pgdn	XX		XX		XX				rsft	end
+			XX		@Vn-w	XX		@Vn-r	XX		XX		@Vn-u	@Vn-i	XX		XX		@Vn-[	@Vn-]	XX		XX
+	@Vn-esc	@Vn-a	XX		XX		XX		XX		lft		down	up		rght	XX		XX		XX		XX
+	XX		XX		del		XX		@Vn-v	@Vn-b	end		pgdn	XX		XX		XX				rsft	end
 	lmet							spc														lft		up		down	rght
-	XX		XX
+	lctl	lalt
 )
 
 (deflayer VimInsert
 	esc		f1		f2		f3		f4		f5		f6		f7		f8		f9		f10		f11		f12		del
 	@swchrn	1		2		3		4		5		6		7		8		9		0		-		=		bspc	home
 			q		w		e		r		t		y		u		i		o		p		[		]		\		pgup		
-	@Vm-esc	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
+	@Vn-esc	a		s		d		f		g		h		j		k		l		;		'		ret		pgdn
 	lsft	z		x		c		v		b		n		m		,		.		/				rsft	end
 	lmet							spc														lft		up		down	rght
-	_		_
+	lctl	lalt
+)
+
+(deflayer VimVisual
+	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		XX
+	@swchrn	XX		XX		XX		XX		XX		XX		XX		XX		XX		XX		@Vv-[	@Vv-]	bspc	XX
+			XX		@Vv-w	XX		XX		XX		@Vv-y	XX		XX		XX		XX		XX		XX		XX		XX
+			@Vv-esc	XX		XX		XX		XX		XX		S-lft	S-down	S-up	S-rght	XX		XX		XX		XX
+	XX		XX		@Vv-x	@Vv-c	@Vv-v	@Vv-b	XX		XX		XX		XX		XX				rsft	end
+	lmet							spc														lft		up		down	rght
+	lctl	lalt
 )
 
 (deflayer leader
@@ -275,3 +331,5 @@
 	_								_														_		_		_		_
 	_		_
 )
+
+;; List of all layers: (base layer-switcher-base layer-switcher-mouse layer-switcher-vim layer-switcher-normal normal mouse mouse-left vim VimNormal VimInsert VimVisual leader apps template)
