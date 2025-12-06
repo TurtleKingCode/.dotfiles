@@ -18,7 +18,7 @@ return {
 	-- 				gemini = function()
 	-- 					return require('codecompanion.adapters').extend('gemini', {
 	-- 						name = 'Gemini 2.0 Flash',
-	-- 						env = { api_key = '' }, -- MISSING API KEY
+	-- 						env = { api_key = os.getenv('GEMINI_API_KEY'), },
 	-- 				end,
 	-- 				opts = {
 	-- 					show_model_choice = true,
@@ -109,7 +109,7 @@ return {
 					gemini = function()
 						return require('codecompanion.adapters').extend('gemini', {
 							name = 'Gemini 2.0 Flash',
-							env = { api_key = '' }, -- MISSING API KEY
+							env = { api_key = os.getenv('GEMINI_API_KEY') },
 							schema = { model = { default = 'gemini-2.0-flash' } },
 						})
 					end,

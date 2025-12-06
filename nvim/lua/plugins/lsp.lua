@@ -27,7 +27,7 @@ return {
 	-- mason-lspconfig
 	{
 		'mason-org/mason-lspconfig.nvim',
-		lazy = false,
+		-- lazy = false,
 		opts = {
 			auto_install = true,
 		},

@@ -1,8 +1,11 @@
+local platform = require('config.platform')
+
 return {
 	-- floatingtodo - custom: old nvim plugin
 	{
 		-- 'vimichael/floatingtodo.nvim',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floatingtodo.nvim/',
+		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floatingtodo.nvim/', -- Windows-only backup path
+		enabled = platform.is_windows(), -- Only enable on Windows where backup exists
 		opts = {
 			target_file = '~/Projects/Obsidian Vault/1 - Rough Notes/todo.md',
 			border = 'rounded',
@@ -22,7 +25,7 @@ return {
 	-- zen-mode - custom: old nvim-data
 	{
 		-- 'folke/zen-mode.nvim',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/zen-mode.nvim/',
+		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/zen-mode.nvim/', -- Windows-only backup path
 		enabled = false,
 		lazy = true,
 		opts = {
@@ -56,7 +59,8 @@ return {
 
 	-- floterminal - custom: old nvim plugin
 	{
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floterminal.nvim/',
+		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floterminal.nvim/', -- Windows-only backup path
+		enabled = platform.is_windows(), -- Only enable on Windows where backup exists
 		opts = {},
 		keys = {
 			{ '<space>tt', '<CMD>Floterminal<CR>', mode = { 'n', 't' }, desc = '[T]oggle [T]erminal' },

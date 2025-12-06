@@ -74,8 +74,8 @@ return {
 	-- markdown-preview - custom: old nvim-data
 	{
 		-- 'iamcco/markdown-preview.nvim',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/markdown-preview.nvim/',
-		enabed = false,
+		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/markdown-preview.nvim/', -- Windows-only backup path
+		enabled = false,
 		name = 'my-markdown-preview',
 		lazy = true,
 		cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -135,7 +135,7 @@ return {
 	-- harpoon - custom: old nvim-data
 	{
 		-- 'ThePrimeagen/harpoon',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/harpoon/',
+		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/harpoon/', -- Windows-only backup path
 		enabled = false,
 		name = 'my-harpoon',
 		branch = 'harpoon2',

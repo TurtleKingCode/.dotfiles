@@ -12,13 +12,13 @@ return {
 					googleai = {
 						disable = false,
 						endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}',
-						secret = '', -- MISSING SECRET
+						secret = os.getenv('GEMINI_API_KEY'),
 						model = 'gemini-2.5-flash',
 					},
 					openai = {
 						disable = true,
 						endpoint = 'https://api.openai.com/v1/chat/completions',
-						secret = '', -- MISSING SECRET
+						secret = os.getenv('OPENAI_SECRET'),
 					},
 				},
 				agents = {

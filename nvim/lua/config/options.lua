@@ -16,10 +16,12 @@ opt.list = false
 opt.cursorline = false
 opt.clipboard = ''
 
--- Terminal Configuration
-opt.shell = 'pwsh'
-opt.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
-opt.shellxquote = ''
+-- Terminal Configuration (OS-aware)
+local platform = require('config.platform')
+local shell_config = platform.get_shell_config()
+opt.shell = shell_config.shell
+opt.shellcmdflag = shell_config.shellcmdflag
+opt.shellxquote = shell_config.shellxquote
 
 -- Disabling Autoformat
 -- vim.g.autoformat = false

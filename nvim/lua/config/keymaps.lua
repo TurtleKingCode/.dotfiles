@@ -36,8 +36,10 @@ map({ 'v', 'n' }, '<leader>D', '"*D', { noremap = true })
 map({ 'v', 'n' }, '<leader>c', '"*c', { noremap = true })
 map({ 'v', 'n' }, '<leader>C', '"*C', { noremap = true })
 
--- powershell paste date & time
-map('n', '<leader>dd', 'G:r !powershell -Command "Get-Date"<CR>', { noremap = true, silent = true })
+-- paste date & time (OS-aware)
+local platform = require('config.platform')
+local date_cmd = platform.get_date_command()
+map('n', '<leader>dd', 'G:r !' .. date_cmd .. '<CR>', { noremap = true, silent = true })
 map('n', '<leader>ri', '<Esc>:r !', { noremap = true, silent = true })
 map('n', '<leader>ro', function()
 	local cmd = vim.fn.input('Shell command: ')
@@ -73,8 +75,11 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 -- fzf-lua
 map('n', '<leader>fP', LazyVim.pick('files', { cwd = '~/Projects/' }), { desc = 'Find in ~/Projects/' })
 map('n', '<leader>fo', LazyVim.pick('files', { cwd = '~/Projects/Obsidian Vault/' }), { desc = 'Find in Obsidian Vault' })
-map('n', '<leader>fd', LazyVim.pick('files', { cwd = '~/AppData/Local/nvim-data/' }), { desc = 'Find Data File' })
-map('n', '<leader>fC', LazyVim.pick('files', { cwd = '~/AppData/Local/nvim-backup/configs/longterm/' }), { desc = 'Find in Old Config' })
+map('n', '<leader>fd', LazyVim.pick('files', { cwd = platform.get_data_dir() }), { desc = 'Find Data File' })
+local backup_dir = platform.get_backup_dir()
+if backup_dir then
+	map('n', '<leader>fC', LazyVim.pick('files', { cwd = backup_dir }), { desc = 'Find in Old Config' })
+end
 
 -- Snacks.toggle
 Snacks.toggle.indent():set(false)

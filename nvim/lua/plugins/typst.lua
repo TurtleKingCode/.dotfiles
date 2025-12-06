@@ -56,12 +56,15 @@ return {
 				desc = 'Toggle Typst Preview',
 			},
 		},
-		opts = {
-			dependencies_bin = {
-				tinymist = 'tinymist',
-			},
-			open_cmd = 'start chrome %s',
-		},
+		opts = function()
+			local platform = require('config.platform')
+			return {
+				dependencies_bin = {
+					tinymist = 'tinymist',
+				},
+				open_cmd = platform.get_browser_command('%s'),
+			}
+		end,
 	},
 
 	{
