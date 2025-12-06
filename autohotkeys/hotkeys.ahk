@@ -379,3 +379,7 @@ if FileExist(A_ScriptDir "..\private\autohotkeys\emailhotstrings.ahk")
 ; Enabling en and em dashes on keyboard
 :*:,,-::–
 :*:..-::—
+
+!WheelUp::Send "{Volume_Up}"       ; Alt + scroll up
+!WheelDown::Send "{Volume_Down}"  ; Alt + scroll down
+!MButton::Send "{Media_Play_Pause}"
