@@ -1,14 +1,15 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
-*.log
-data
-
-private/*
-*/private/*
+private/
+*/private/
 .private/*
 */.private/*
-.env/*
+.env
+
+# Leftovers from LazyVim Repo
+# tt.*
+# .tests
+# doc/tags
+# debug
+# .repro
+# foo.*
+# *.log
+# data
