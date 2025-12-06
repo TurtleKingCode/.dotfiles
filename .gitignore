@@ -1,9 +1,9 @@
 private/
-*.private.*
+*/private/
 
-private/*
-*/private/*
+*.private.*
 .private/*
 */.private/*
+
 .env
 
