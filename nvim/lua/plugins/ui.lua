@@ -1,49 +1,8 @@
--- markview - custom
 return {
-	---@type LazySpec
-	{
-		'OXY2DEV/markview.nvim',
-		enabled = false,
-		lazy = true,
-		event = 'VeryLazy',
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-			'nvim-mini/mini.icons',
-		},
-		ft = 'markdown',
-		opts = {
-			preview = {
-				modes = { 'n', 'i', 'no', 'c' },
-				hybrid_modes = { 'i' },
-				-- This is nice to have
-				callbacks = {
-					on_enable = function(_, win)
-						vim.wo[win].conceallevel = 2
-						vim.wo[win].concealcursor = 'nc'
-					end,
-				},
-			},
-		},
-	},
-
 	-- bufferline: disabling
 	{
 		'akinsho/bufferline.nvim',
 		enabled = false,
-	},
-
-	-- transparent.nvim (tribela)
-	{
-		'tribela/transparent.nvim',
-		name = 'tribela-transparent.nvim',
-		enabled = false,
-		event = 'VimEnter',
-		opts = {
-			auto = true,
-			extra_groups = {},
-			excludes = {},
-		},
-		-- config = true,
 	},
 
 	-- transparent.nvim (xiyaowong)

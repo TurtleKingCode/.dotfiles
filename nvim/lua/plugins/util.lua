@@ -22,41 +22,6 @@ return {
 		},
 	},
 
-	-- zen-mode - custom: old nvim-data
-	{
-		-- 'folke/zen-mode.nvim',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/zen-mode.nvim/', -- Windows-only backup path
-		enabled = false,
-		lazy = true,
-		opts = {
-			window = {
-				backdrop = 1,
-				width = 0.70,
-				height = 0.98,
-				options = {
-					number = false, -- disable line numbers
-					relativenumber = false, -- disable relative numbers
-					signcolumn = 'auto', -- disable signcolumn
-					cursorline = false, -- disable cursorline
-					cursorcolumn = false, -- enable cursor column
-					foldcolumn = '1', -- disable fold column
-					list = false, -- disable whitespace characters
-				},
-			},
-			on_open = function()
-				vim.opt.wrap = true -- enable word wrap
-				vim.opt.linebreak = true -- wrap lines at word boundaries
-			end,
-			on_close = function()
-				vim.opt.wrap = false -- disable word wrap
-				vim.opt.linebreak = false -- disable linebreak
-			end,
-		},
-		keys = {
-			{ '<leader>zz', '<cmd>ZenMode<CR>', desc = 'Toggle Zen Mode' },
-		},
-	},
-
 	-- floterminal - custom: old nvim plugin
 	{
 		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floterminal.nvim/', -- Windows-only backup path
@@ -65,22 +30,6 @@ return {
 		keys = {
 			{ '<space>tt', '<CMD>Floterminal<CR>', mode = { 'n', 't' }, desc = '[T]oggle [T]erminal' },
 		},
-	},
-
-	-- hardtime - custom
-	{
-		'm4xshen/hardtime.nvim',
-		enabled = false,
-		lazy = true,
-		event = 'BufReadPost',
-		dependencies = { 'MunifTanjim/nui.nvim' },
-		opts = {
-			disable_mouse = false,
-			max_count = 5,
-		},
-		-- config = function(_, opts)
-		-- 	require('hardtime').setup()
-		-- end,
 	},
 
 	-- calendar.nvim

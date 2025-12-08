@@ -5,8 +5,9 @@ return {
 	-- oil - custom
 	{
 		'stevearc/oil.nvim',
-		lazy = true,
-		event = 'VeryLazy',
+		event = 'VeryEnter',
+		-- event = 'VeryLazy',
+		lazy = false,
 		opts = {},
 		-- dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
 		keys = { { '-', '<cmd>Oil --float<cr>', desc = 'Open root dir' } },
@@ -30,34 +31,13 @@ return {
 				-- 	'mtime',
 				-- },
 				preview_win = {
-					-- Whether the preview window is automatically updated when the cursor is moved
 					update_on_cursor_moved = true,
-					-- How to open the preview window "load"|"scratch"|"fast_scratch"
 					preview_method = 'fast_scratch',
-					-- Window-local options to use for preview window buffers
 					win_options = {},
 				},
 			})
 			vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
-
-			-- oil.open_prev_when_open = function()
-			-- 	-- local oil = require('oil')
-			-- 	if oil.get_cursor_entry() then
-			-- 		oil.open_preview()
-			-- 	end
-			-- end
-
-			-- vim.api.nvim_create_user_command('Ex', function()
-			-- 	require('oil').open_float()
-			-- end, {})
-
-			-- local open_preview = function()
-			-- 	local oil = require('oil')
-			-- 	if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
-			-- 		oil.open_preview()
-			-- 	end
-			-- end
 
 			vim.api.nvim_create_autocmd('User', {
 				pattern = 'OilEnter',
@@ -71,50 +51,17 @@ return {
 		end,
 	},
 
-	-- markdown-preview - custom: old nvim-data
-	{
-		-- 'iamcco/markdown-preview.nvim',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/markdown-preview.nvim/', -- Windows-only backup path
-		enabled = false,
-		name = 'my-markdown-preview',
-		lazy = true,
-		cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-		ft = 'markdown',
-		-- build = 'cd app ; npm install',
-		init = function()
-			vim.g.mkdp_filetypes = { 'markdown' }
-			vim.g.mkdp_command_for_global = 1
-			vim.g.mkdp_browser = 'zen'
-			vim.g.mkdp_combine_preview = 1
-		end,
-	},
-
 	-- markdown-preview - custom
 	{
 		'iamcco/markdown-preview.nvim',
+		build = 'cd app ; npm install',
 		cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+		lazy = true,
+
 		config = function()
 			vim.cmd([[do FileType]])
 		end,
-		build = 'cd app ; npm install',
 
-		-- build = function()
-		-- 	vim.cmd('source ./mkdp/util/install.vim')
-		-- 	-- require('mkdp.util').install()
-		-- end,
-		-- build = function()
-		-- 	require('lazy').load({ plugins = { 'markdown-preview.nvim' } })
-		-- 	vim.fn['mkdp#util#install']()
-		-- end,
-		-- build = function()
-		-- 	require('lazy').load({ plugins = { 'markdown-preview.nvim' } })
-		-- 	local plugin_path = vim.fn.expand('$HOME/AppData/Local/nvim-data/lazy/markdown-preview.nvim')
-		-- 	local install_cmd = '"' .. plugin_path .. '/app/install.cmd"'
-		-- 	vim.fn.system(install_cmd)
-		-- end,
-
-		lazy = true,
-		ft = 'markdown',
 		keys = {
 			{
 				'<leader>cp',
@@ -123,6 +70,7 @@ return {
 				desc = 'Markdown Preview',
 			},
 		},
+
 		init = function()
 			vim.g.mkdp_filetypes = { 'markdown' }
 			vim.g.mkdp_command_for_global = 1
@@ -130,50 +78,6 @@ return {
 			-- vim.g.mkdp_browser = '~\\AppData\\Local\\imput\\Helium\\Application\\chrome.exe'
 			vim.g.mkdp_combine_preview = 1
 		end,
-	},
-
-	-- harpoon - custom: old nvim-data
-	{
-		-- 'ThePrimeagen/harpoon',
-		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/harpoon/', -- Windows-only backup path
-		enabled = false,
-		name = 'my-harpoon',
-		branch = 'harpoon2',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		lazy = true,
-		keys = function()
-			local keys = {
-				{
-					'<leader>A',
-					function()
-						require('harpoon'):list():add()
-					end,
-					desc = 'harpoon file',
-				},
-				{
-					'<leader>a',
-					function()
-						local harpoon = require('harpoon')
-						harpoon.ui:toggle_quick_menu(harpoon:list())
-					end,
-					desc = 'harpoon quick menu',
-				},
-			}
-
-			-- for i = 1, 5 do
-			for i, j in pairs({ 'j', 'i', 'o', ';', "'" }) do
-				table.insert(keys, {
-					'<leader>' .. j,
-					function()
-						require('harpoon'):list():select(i)
-					end,
-					desc = 'Harpoon to File ' .. i,
-				})
-			end
-
-			return keys
-		end,
-		-- config = Config
 	},
 
 	-- yazi
@@ -215,16 +119,6 @@ return {
 			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
 			-- vim.g.loaded_netrw = 1
 			vim.g.loaded_netrwPlugin = 1
-		end,
-	},
-
-	-- mkdnflow
-	{
-
-		'jakewvincent/mkdnflow.nvim',
-		enabled = false,
-		config = function()
-			require('mkdnflow').setup({})
 		end,
 	},
 
