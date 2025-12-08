@@ -1,43 +1,10 @@
+local secrets = require('config.secrets').load_secrets()
 return {
-	-- 	'olimorris/codecompanion.nvim',
-	-- 	dependencies = {
-	-- 		'nvim-lua/plenary.nvim',
-	-- 		'nvim-treesitter/nvim-treesitter',
-	-- 	},
-	-- 	opts = {
-	-- 		strategies = {
-	-- 			chat = { adapter = 'gemini' },
-	-- 			inline = { adapter = 'gemini' },
-	-- 			cmd = { adapter = 'gemini' },
-	-- 		},
-	-- 		opts = { log_level = 'DEBUG' },
-	-- 	},
-	-- 	config = function()
-	-- 		require('codecompanion').setup({
-	-- 			adapters = {
-	-- 				gemini = function()
-	-- 					return require('codecompanion.adapters').extend('gemini', {
-	-- 						name = 'Gemini 2.0 Flash',
-	-- 						env = { api_key = os.getenv('GEMINI_API_KEY'), },
-	-- 				end,
-	-- 				opts = {
-	-- 					show_model_choice = true,
-	-- 				},
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- 	keys = {
-	-- 		{ '<leader>Ap', '<CMD>CodeCompanion<CR>', mode = { 'n', 'i' }, desc = 'CodeCompanion Prompt' },
-	-- 		{ '<leader>Aa', '<CMD>CodeCompanionActions<CR>', mode = { 'n', 'i' }, desc = 'CodeCompanion Actions' },
-	-- 		{ '<leader>Ac', '<CMD>CodeCompanionChat<CR>', mode = { 'n', 'i' }, desc = 'CodeCompanion Chat' },
-	-- 		{ '<leader>Am', '<CMD>CodeCompanionCmd<CR>', mode = { 'n', 'i' }, desc = 'CodeCompanion Cmp' },
-	-- 	},
-	-- },
-
 	-- render markdown
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
 		-- enable = false,
+		lazy = true,
 		opts = {
 			code = {
 				sign = true,
@@ -109,7 +76,7 @@ return {
 					gemini = function()
 						return require('codecompanion.adapters').extend('gemini', {
 							name = 'Gemini 2.0 Flash',
-							env = { api_key = os.getenv('GEMINI_API_KEY') },
+							env = { api_key = secrets.gemini_api_key },
 							schema = { model = { default = 'gemini-2.0-flash' } },
 						})
 					end,
@@ -172,6 +139,7 @@ return {
 	-- blink.cmp: adding codecompanion
 	{
 		'saghen/blink.cmp',
+		lazy = true,
 		opts = {
 			sources = {
 				per_filetype = {
