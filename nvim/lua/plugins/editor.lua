@@ -8,14 +8,14 @@ return {
 		event = 'VimEnter',
 		-- event = 'VeryLazy',
 		lazy = false,
-		opts = {},
+		-- opts = {},
 		-- dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
-		keys = { { '-', '<cmd>Oil --float<cr>', desc = 'Open root dir' } },
+		keys = { { '\\', '<cmd>Oil --float<cr>', desc = 'Open root dir' } },
 		config = function()
 			require('oil').setup({
 				default_file_explorer = true,
 				keymaps = {
-					['-'] = { 'actions.close', mode = 'n' },
+					['\\'] = { 'actions.close', mode = 'n' },
 					['<Esc>'] = { 'actions.close', mode = 'n' },
 					['q'] = { 'actions.close', mode = 'n' },
 					['<C-c>'] = { 'actions.parent', mode = 'n' },
@@ -334,13 +334,5 @@ return {
 				enabled = true,
 			},
 		},
-	},
-
-	-- vim-pencil
-	{
-		'preservim/vim-pencil',
-		init = function()
-			vim.g['pencil#wrapModeDefault'] = 'soft'
-		end,
 	},
 }
