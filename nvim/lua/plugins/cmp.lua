@@ -8,12 +8,29 @@ return {
 		},
 	},
 
-	-- blink: harper
+	-- blink: emoji.nvim
 	{
 		'saghen/blink.cmp',
-		enabled = true,
-		lazy = true,
+		optional = true,
+		dependencies = { 'allaman/emoji.nvim', 'saghen/blink.compat' },
 		opts = {
+			sources = {
+				default = { 'emoji' },
+				providers = {
+					emoji = {
+						name = 'emoji',
+						module = 'blink.compat.source',
+						-- overwrite kind of suggestion
+						transform_items = function(ctx, items)
+							local kind = require('blink.cmp.types').CompletionItemKind.Text
+							for i = 1, #items do
+								items[i].kind = kind
+							end
+							return items
+						end,
+					},
+				},
+			},
 			keymap = {
 				preset = 'default',
 				-- ['<CR>'] = false,
@@ -23,23 +40,10 @@ return {
 		},
 	},
 
-	{
-		'hrsh7th/nvim-cmp',
-		lazy = true,
-		dependencies = { 'hrsh7th/cmp-emoji' },
-		---@param opts cmp.ConfigSchema
-		opts = function(_, opts)
-			table.insert(opts.sources, { name = 'emoji' })
-		end,
-	},
-
 	-- emoji.nvim
 	{
 		'allaman/emoji.nvim',
 		lazy = true,
-		-- enabled = false,
-		-- version = '1.0.0',
-		ft = 'markdown',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'hrsh7th/nvim-cmp',

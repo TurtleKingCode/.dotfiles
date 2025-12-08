@@ -10,12 +10,12 @@ return {
 		lazy = false,
 		-- opts = {},
 		-- dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
-		keys = { { '\\', '<cmd>Oil --float<cr>', desc = 'Open root dir' } },
+		keys = { { '-', '<cmd>Oil --float<cr>', desc = 'Open root dir' } },
 		config = function()
 			require('oil').setup({
 				default_file_explorer = true,
 				keymaps = {
-					['\\'] = { 'actions.close', mode = 'n' },
+					['-'] = { 'actions.close', mode = 'n' },
 					['<Esc>'] = { 'actions.close', mode = 'n' },
 					['q'] = { 'actions.close', mode = 'n' },
 					['<C-c>'] = { 'actions.parent', mode = 'n' },
