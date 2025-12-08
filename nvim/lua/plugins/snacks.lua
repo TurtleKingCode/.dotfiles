@@ -1,10 +1,12 @@
 return {
 	{
 		'snacks.nvim',
+		event = 'VimEnter',
+		lazy = false,
 		opts = {
 			indent = { enabled = false },
 			input = { enabled = false },
-			notifier = { enabled = false },
+			-- notifier = { enabled = false },
 			scope = { enabled = false },
 			scroll = { enabled = false },
 			statuscolumn = { enabled = false }, -- we set this in options.lua

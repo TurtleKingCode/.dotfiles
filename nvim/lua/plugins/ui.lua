@@ -1,9 +1,6 @@
 return {
 	-- bufferline: disabling
-	{
-		'akinsho/bufferline.nvim',
-		enabled = false,
-	},
+	{ 'akinsho/bufferline.nvim', enabled = false },
 
 	-- transparent.nvim (xiyaowong)
 	{

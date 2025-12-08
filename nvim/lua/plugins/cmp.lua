@@ -12,6 +12,7 @@ return {
 	{
 		'saghen/blink.cmp',
 		enabled = true,
+		lazy = true,
 		opts = {
 			keymap = {
 				preset = 'default',
@@ -24,6 +25,7 @@ return {
 
 	{
 		'hrsh7th/nvim-cmp',
+		lazy = true,
 		dependencies = { 'hrsh7th/cmp-emoji' },
 		---@param opts cmp.ConfigSchema
 		opts = function(_, opts)
@@ -34,8 +36,9 @@ return {
 	-- emoji.nvim
 	{
 		'allaman/emoji.nvim',
-		enabled = false,
-		version = '1.0.0',
+		lazy = true,
+		-- enabled = false,
+		-- version = '1.0.0',
 		ft = 'markdown',
 		dependencies = {
 			'nvim-lua/plenary.nvim',

@@ -1,9 +1,7 @@
 return {
 	{
 		'nvim-treesitter/nvim-treesitter',
-		opts = {
-			ensure_installed = { 'typst' },
-		},
+		opts = { ensure_installed = { 'typst' } },
 	},
 
 	{
@@ -47,6 +45,7 @@ return {
 
 	{
 		'chomosuke/typst-preview.nvim',
+		lazy = true,
 		cmd = { 'TypstPreview', 'TypstPreviewToggle', 'TypstPreviewUpdate' },
 		keys = {
 			{

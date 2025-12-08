@@ -5,6 +5,7 @@ return {
 	{
 		-- 'vimichael/floatingtodo.nvim',
 		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floatingtodo.nvim/', -- Windows-only backup path
+		lazy = true,
 		enabled = platform.is_windows(), -- Only enable on Windows where backup exists
 		opts = {
 			target_file = '~/Projects/Obsidian Vault/1 - Rough Notes/todo.md',
@@ -25,6 +26,7 @@ return {
 	-- floterminal - custom: old nvim plugin
 	{
 		dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim/lua/custom/plugins/floterminal.nvim/', -- Windows-only backup path
+		lazy = true,
 		enabled = platform.is_windows(), -- Only enable on Windows where backup exists
 		opts = {},
 		keys = {

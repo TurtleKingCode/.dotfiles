@@ -14,14 +14,14 @@ return {
 						disable = false,
 						endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}',
 						-- secret = os.getenv('GEMINI_API_KEY'),
-						secret = secrets.gemini_api_key
+						secret = secrets.gemini_api_key,
 						model = 'gemini-2.5-flash',
 					},
 					openai = {
 						disable = true,
 						endpoint = 'https://api.openai.com/v1/chat/completions',
 						-- secret = os.getenv('OPENAI_SECRET'),
-						secret = secrets.openai_secret
+						secret = secrets.openai_secret,
 					},
 				},
 				agents = {
