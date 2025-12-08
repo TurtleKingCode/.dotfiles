@@ -82,8 +82,8 @@ if backup_dir then
 end
 
 -- Snacks.toggle
-Snacks.toggle.indent():set(false)
-Snacks.toggle.animate():set(false)
+-- Snacks.toggle.indent():set(false)
+-- Snacks.toggle.animate():set(false)
 Snacks.toggle.zen():map('<leader>zz')
 
 -- vim.keymap.set('x', '<leader>ro', function()
@@ -144,8 +144,6 @@ end, { desc = 'Toggle distraction-free mode' })
 -- 		print('Distraction-free mode: OFF')
 -- 	end
 -- end, { desc = 'Toggle distraction-free mode' })
-
-map('n', '<leader>tr', ':TransparentToggle<cr>', { desc = 'Toggle Transparancy', silent = true })
 
 map('n', '<leader>zp', function()
 	localopts.lsp = not localopts.lsp

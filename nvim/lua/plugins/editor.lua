@@ -5,7 +5,7 @@ return {
 	-- oil - custom
 	{
 		'stevearc/oil.nvim',
-		event = 'VeryEnter',
+		event = 'VimEnter',
 		-- event = 'VeryLazy',
 		lazy = false,
 		opts = {},

@@ -8,6 +8,7 @@ return {
 	-- transparent.nvim (xiyaowong)
 	{
 		'xiyaowong/transparent.nvim',
+		lazy = false,
 		name = 'xiyaowong-transparent.nvim',
 		enabled = true,
 		-- Optional, you don't have to run setup.
@@ -22,16 +23,13 @@ return {
 				'Operator', 'Structure', 'LineNr', 'NonText', 'SignColumn',
 				'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC', 'EndOfBuffer',
 			},
-			-- table: additional groups that should be cleared
 			extra_groups = {},
-			-- table: groups you don't want to clear
 			exclude_groups = {},
-			-- function: code to be executed after highlight groups are cleared
-			-- Also the user event "TransparentClear" will be triggered
 			on_clear = function() end,
 		},
 		config = function(_, opts)
 			require('transparent').setup(opts)
 		end,
+		keys = { { '<leader>tr', '<cmd>TransparentToggle<cr>', desc = 'Toggle Transparency' } },
 	},
 }
