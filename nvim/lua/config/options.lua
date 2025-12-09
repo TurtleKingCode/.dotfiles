@@ -24,11 +24,11 @@ opt.shellcmdflag = shell_config.shellcmdflag
 opt.shellxquote = shell_config.shellxquote
 
 -- Disabling Autoformat
--- vim.g.autoformat = false
+vim.g.autoformat = false
 
 -- vim.g.python3_host_prog = vim.fn.expand('~/AppData/Local/Programs/Python/Python313/python.exe')
 
-opt.wrap = true
+opt.wrap = false
 opt.linebreak = true
 
 -- early stage implementation of personal persistent opts
