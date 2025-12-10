@@ -98,10 +98,7 @@ return {
 	},
 
 	-- render markdown
-	{
-		'MeanderingProgrammer/render-markdown.nvim',
-		ft = { 'codecompanion' },
-	},
+	{ 'MeanderingProgrammer/render-markdown.nvim', ft = { 'codecompanion' } },
 
 	-- 	-- blink.cmp: adding codecompanion
 	-- 	{

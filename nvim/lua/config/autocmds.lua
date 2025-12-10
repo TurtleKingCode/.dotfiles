@@ -7,31 +7,6 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- vim.api.nvim_create_autocmd('VeryLazy', {
--- 	pattern = 'LazyVimStarted',
--- 	callback = function()
--- 		-- This will run after all plugins are loaded
--- 		local ok, Snacks = pcall(require, 'snacks')
--- 		if ok then
--- 			Snacks.toggle.indent():set(false)
--- 			Snacks.toggle.animate():set(false)
--- 			-- Now Snacks is available
--- 			-- Snacks.toggle.get('format'):set(false)
--- 			-- Snacks.toggle.get('pairs'):set(false)
--- 		end
--- 	end,
--- })
-
--- vim.api.nvim_create_autocmd('BufEnter', {
--- 	pattern = 'SnacksLoaded',
--- 	callback = function()
--- 		local Snacks = require('Snacks')
--- 		Snacks.toggle.indent():set(false)
--- 		Snacks.toggle.animate():set(false)
--- 		print('I hate you')
--- 	end,
--- })
-
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 	pattern = '*.kbd',
 	callback = function()
@@ -56,12 +31,12 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 -- -- 	{ "🭼", "FloatBorder" },
 -- -- 	{ "▏", "FloatBorder" },
 -- -- }
--- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
--- 	group = vim.api.nvim_create_augroup('float_diagnostic', { clear = true }),
--- 	callback = function()
--- 		vim.diagnostic.open_float(nil, {
--- 			focus = false,
--- 			border = 'rounded',
--- 		})
--- 	end,
--- })
+vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+	group = vim.api.nvim_create_augroup('float_diagnostic', { clear = true }),
+	callback = function()
+		vim.diagnostic.open_float(nil, {
+			focus = false,
+			border = 'rounded',
+		})
+	end,
+})
