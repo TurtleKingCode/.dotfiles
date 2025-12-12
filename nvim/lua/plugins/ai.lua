@@ -113,73 +113,58 @@ return {
 	-- 		},
 	-- 	},
 
-	-- gp - custom: old nvim-data
+	-- gp - custom
 	{
 		'robitx/gp.nvim',
-		-- dir = '~/AppData/Local/nvim-backup/configs/longterm/nvim-data/lazy/gp.nvim/',
-		-- enabled = false,
-		-- name = 'my-gp',
-		lazy = true,
-		enabled = false,
+		lazy = false,
+		enabled = true,
 		config = function()
 			local opts = {
 				providers = {
-					googleai = {
+					-- openai = { disable = true },
+					copilot = {
 						disable = false,
-						endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}',
-						-- secret = os.getenv('GEMINI_API_KEY'),
-						secret = secrets.gemini_api_key,
-						model = 'gemini-2.5-flash',
-					},
-					openai = {
-						disable = true,
-						endpoint = 'https://api.openai.com/v1/chat/completions',
-						-- secret = os.getenv('OPENAI_SECRET'),
-						secret = secrets.openai_secret,
+						endpoint = 'https://api.githubcopilot.com/chat/completions',
+						secret = secrets.copilot_secret,
 					},
 				},
+
+				-- The `providers` table configures AI completion/chat backends available to your Neovim setup.
+				-- Each key under `providers` represents a provider; you can enable/disable and tweak its settings.
+				--
+				-- Example keys:
+				--   - openai: configuration for OpenAI (currently commented out and would be disabled if enabled).
+				--   - copilot: configuration for GitHub Copilot Chat.
+				--
+				-- copilot fields:
+				--   - disable: set to `false` to enable Copilot; `true` would turn it off.
+				--   - endpoint: the API base URL Copilot uses for chat/completion requests.
+				--   - secret: your authentication token or a function returning it; here sourced from `secrets.copilot_secret`.
+				--
+				-- In practice, this tells your AI plugin to use GitHub Copilot Chat via the specified endpoint,
+				-- with credentials pulled from your `secrets` module, while keeping the provider enabled.
+
 				agents = {
-					-- They don't need to be explicity disabled because the original provider is disabled
-					-- { name = 'ChatGPT-o3-mini', disable = true },
-					-- { name = 'ChatGPT4o', disable = true },
-					-- { name = 'ChatGPT4o-mini', disable = true },
 					{
-						provider = 'googleai',
-						name = 'ChatGemini',
+						provider = 'copilot',
+						name = 'ChatCopilot',
 						chat = true,
 						command = false,
 						-- string with model name or table with model name and parameters
-						model = { model = 'gemini-2.5-flash' },
+						model = { model = 'gpt-5', temperature = 1.1, top_p = 1 },
+						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require('gp.defaults').chat_system_prompt,
 					},
 					{
-						provider = 'googleai',
-						name = 'CodeGemini',
+						provider = 'copilot',
+						name = 'CodeCopilot',
 						chat = false,
 						command = true,
 						-- string with model name or table with model name and parameters
-						model = { model = 'gemini-2.0-flash-lite' },
-						system_prompt = 'Answer my questions and complete any tasks I give you with brevity.',
-						-- system_prompt = require('gp.defaults').code_system_prompt,
+						model = { model = 'gpt-5', temperature = 0.8, top_p = 1, n = 1 },
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require('gp.defaults').code_system_prompt,
 					},
-					{
-						provider = 'googleai',
-						name = 'GeneralGemini',
-						chat = true,
-						command = false,
-						-- string with model name or table with model name and parameters
-						model = { model = 'gemini-2.5-flash' },
-						system_prompt = 'Answer my questions',
-					},
-					-- 	{
-					-- 		name = 'GoogleAI',
-					-- 		disable = false,
-					-- 		provider = 'googleai',
-					-- 		chat = true,
-					-- 		command = true,
-					-- 		model = { model = 'gemini-2.5-flash' },
-					-- 		system_prompt = 'Answer my questions conncisely and accurately. If you do not know the answer, say "I do not know".',
-					-- 	},
 				},
 				chat_dir = vim.fn.stdpath('data'):gsub('/$', '') .. '/gp/chats',
 			}
