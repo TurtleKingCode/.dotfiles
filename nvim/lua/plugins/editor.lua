@@ -93,14 +93,15 @@ return {
 	-- markdown-preview - custom
 	{
 		'iamcco/markdown-preview.nvim',
+		lazy = true,
 		build = 'cd app ; npm install',
 		cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-		lazy = true,
 
 		config = function()
 			vim.cmd([[do FileType]])
 		end,
 
+		ft = 'markdown',
 		keys = {
 			{
 				'<leader>cp',
@@ -113,8 +114,7 @@ return {
 		init = function()
 			vim.g.mkdp_filetypes = { 'markdown' }
 			vim.g.mkdp_command_for_global = 1
-			vim.g.mkdp_browser = 'msedge'
-			-- vim.g.mkdp_browser = '~\\AppData\\Local\\imput\\Helium\\Application\\chrome.exe'
+			vim.g.mkdp_browser = vim.env.LOCALAPPDATA .. '/imput/Helium/Application/chrome.exe'
 			vim.g.mkdp_combine_preview = 1
 		end,
 	},
