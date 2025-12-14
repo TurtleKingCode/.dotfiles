@@ -3,6 +3,7 @@
 -- Add any additional options here
 
 local opt = vim.opt
+local state = require('config.state')
 
 -- Indentation Settings
 opt.tabstop = 4
@@ -30,7 +31,4 @@ vim.g.autoformat = false
 
 opt.wrap = false
 opt.linebreak = true
-
--- early stage implementation of personal persistent opts
-local localopts = {}
-localopts.transparent = vim.g.transparent_enabled
+opt.background = state.background

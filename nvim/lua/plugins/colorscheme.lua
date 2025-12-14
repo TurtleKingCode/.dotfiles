@@ -1,3 +1,5 @@
+local state = require('config.state')
+
 return {
 	-- colorscheme
 	{
@@ -6,7 +8,8 @@ return {
 			-- colorscheme = 'rose-pine',
 			-- colorscheme = 'cyberdream',
 			-- colorscheme = 'tokyodark',
-			colorscheme = 'gruvbox',
+			-- colorscheme = 'gruvbox',
+			colorscheme = state.colorscheme or 'rose-pine',
 		},
 	},
 
