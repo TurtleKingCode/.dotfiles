@@ -1,1 +1,0 @@
-return { colorscheme = 'darkblue' }
