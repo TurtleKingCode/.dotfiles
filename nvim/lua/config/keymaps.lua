@@ -111,14 +111,19 @@ map('n', '<leader>zm', function()
 		-- vim.opt.signcolumn = 'no' -- hide signs instead of showing them
 		vim.opt.laststatus = 0
 		vim.opt.showmode = false
-		pcall(require('lualine').hide) -- safe call (won’t error if lualine not loaded)
+		require('lualine').hide({
+			place = {'statusline', 'winbar'}, -- The segment this change applies to.
+			unhide = false,  -- whether to re-enable lualine again/
+		})
+		-- pcall(require('lualine').hide) -- safe call (won’t error if lualine not loaded)
 	else
 		vim.opt.number = true
 		vim.opt.relativenumber = true
 		-- vim.opt.signcolumn = 'yes'
 		vim.opt.laststatus = 2
 		vim.opt.showmode = true
-		pcall(require('lualine').hide, { unhide = true })
+		require('lualine').hide({ unhide = true })
+		-- pcall(require('lualine').hide, { unhide = true })
 	end
 end, { desc = 'Toggle distraction-free mode' })
 

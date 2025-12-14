@@ -2,7 +2,7 @@ return {
 	-- flash
 	{ 'folke/flash.nvim', enabled = false },
 
-	-- oil - custom
+	-- oil
 	{
 		'stevearc/oil.nvim',
 		event = 'VimEnter',
@@ -90,7 +90,7 @@ return {
 		end,
 	},
 
-	-- markdown-preview - custom
+	-- markdown-preview
 	{
 		'iamcco/markdown-preview.nvim',
 		lazy = true,
