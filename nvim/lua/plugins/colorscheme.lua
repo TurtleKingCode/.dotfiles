@@ -49,15 +49,6 @@ return {
 		end,
 	},
 
-	-- everforest
-	{
-		'sainnhe/everforest',
-		lazy = true,
-		config = function()
-			vim.g.everforest_enable_italic = true
-		end,
-	},
-
 	-- cyberdream
 	{ 'scottmckendry/cyberdream.nvim', lazy = true, opts = { transparent = false } },
 
@@ -86,4 +77,35 @@ return {
 		end,
 	},
 	{ 'ellisonleao/gruvbox.nvim', lazy = true },
+
+	-- everforest-nvim
+	{
+		'neanias/everforest-nvim',
+		lazy = false,
+		priority = 90, -- make sure to load this before all the other start plugins
+		opt = {
+			background = 'medium',
+			transparent_background_level = 0,
+			italics = true,
+			disable_italic_comments = false,
+			inlay_hints_background = 'dimmed',
+			on_highlights = function(hl, palette)
+				hl['@string.special.symbol.ruby'] = { link = '@field' }
+				hl['DiagnosticUnderlineWarn'] = { undercurl = true, sp = palette.yellow }
+			end,
+		},
+		config = function(_, opts)
+			require('everforest').setup(opts)
+		end,
+	},
+	{
+		'Rigellute/shades-of-purple.vim',
+		init = function()
+			vim.g.shades_of_purple_airline = 1
+			vim.g.airline_theme = 'shades_of_purple'
+			-- vim.g.shades_of_purple_lightline = 1
+			-- vim.g.lightline = { colorscheme = 'shades_of_purple' }
+			-- vim.g.shades_of_purple_transparent_bg = 1
+		end,
+	},
 }
