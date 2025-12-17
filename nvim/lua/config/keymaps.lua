@@ -67,6 +67,12 @@ map('x', '<leader>ro', function()
 	vim.fn.append(insert_line, output)
 end, { noremap = true, silent = true })
 
+-- centering
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+
 -- terminal
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
