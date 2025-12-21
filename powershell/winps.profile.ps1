@@ -250,6 +250,7 @@ function padmin
 # }
 
 Set-Alias grep rg
+Set-Alias rep findstr
 Set-Alias gcal gcalcli
 Set-Alias ai aichat
 Set-Alias tj tjournal
@@ -257,7 +258,6 @@ Set-Alias dj dijo
 Set-Alias doo dooit
 Set-Alias lg lazygit
 
-Remove-Item Alias:erase
 function erase { Remove-Item -LiteralPath $args[0] -Recurse -Force }
 
 # $SETTINGS = "C:\Users\HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
@@ -375,46 +375,30 @@ function cpy { Set-Clipboard $args[0] }
 
 function pst { Get-Clipboard }
 
-
 $Env:YAZI_FILE_ONE = 'C:\Program Files\Git\usr\bin\file.exe'
 
+# ==============================
+# Fzf functions for PowerShell
+# ==============================
 
-
+# Find files using fzf
 function f {
-    # Find files or directories using fzf with a preview.
-    # If a directory is selected, cd into it; if a file is selected, open it in nvim.
-    $previewCmd = 'powershell -NoProfile -Command "if (Test-Path ''{}'' -PathType Leaf) { bat --style=numbers --color=always ''{}'' } elseif (Test-Path ''{}'' -PathType Container) { Get-ChildItem -Force ''{}'' | Format-Table -AutoSize } else { Write-Output ''Not found'' }"'
+    $selection = fd --type f --hidden --exclude .git --max-depth 5 | 
+        fzf --preview 'bat --style=numbers --color=always {}'
+    if ($selection) { nvim $selection }
+}
 
-    $selection = & fzf --preview $previewCmd
-
-    if (-not $selection) { return }
-
-    if (Test-Path $selection -PathType Container) {
-        Set-Location -Path $selection
-    } elseif (Test-Path $selection -PathType Leaf) {
-        # Open with neovim; change to your editor if needed
-        nvim $selection
+# Find a directory using fzf
+function ff {
+    $selection = fd --type d --hidden --exclude .git --max-depth 5 | 
+        fzf --preview 'Get-ChildItem {} | Format-Table -AutoSize | Out-String'
+    
+    if ($selection) {
+        Set-Location $selection
     }
 }
 
-function fd {
-    # Find a directory using fzf with a preview, then cd into it.
-    # This enumerates directories recursively from the current location.
-    $dirs = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-    if (-not $dirs) {
-        Write-Host "No directories found."
-        return
-    }
-
-    $previewCmd = 'powershell -NoProfile -Command "Get-ChildItem -Force ''{}'' | Format-Table -AutoSize"'
-
-    $selection = $dirs | fzf --preview $previewCmd
-
-    if (-not $selection) { return }
-
-    if (Test-Path $selection -PathType Container) {
-        Set-Location -Path $selection
-    }
-}
+Invoke-Expression (&starship init powershell)
 
