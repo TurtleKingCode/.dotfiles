@@ -82,6 +82,7 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 map('n', '<leader>fP', LazyVim.pick('files', { cwd = '~/Projects/' }), { desc = 'Find in ~/Projects/' })
 map('n', '<leader>fo', LazyVim.pick('files', { cwd = '~/Projects/Obsidian Vault/' }), { desc = 'Find in Obsidian Vault' })
 map('n', '<leader>fd', LazyVim.pick('files', { cwd = platform.get_data_dir() }), { desc = 'Find Data File' })
+map('n', '<leader>fD', LazyVim.pick('files', { cwd = '~/.dotfiles/' }), { desc = 'Find DotFile' })
 local backup_dir = platform.get_backup_dir()
 if backup_dir then
 	map('n', '<leader>fC', LazyVim.pick('files', { cwd = backup_dir }), { desc = 'Find in Old Config' })
