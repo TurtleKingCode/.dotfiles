@@ -42,6 +42,7 @@ return {
 			vim.api.nvim_create_autocmd('User', {
 				pattern = 'OilEnter',
 				callback = vim.schedule_wrap(function(args)
+					---@type oil.Config
 					local oil = require('oil')
 					if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
 						oil.open_preview()
@@ -50,7 +51,7 @@ return {
 			})
 		end,
 	},
-	
+
 	-- render markdown
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
@@ -58,13 +59,18 @@ return {
 		lazy = true,
 		opts = {
 			code = {
-				sign = true,
-				width = 'block',
-				right_pad = 1,
+				-- sign = false,
+				-- style = 'full',
+				-- border = 'thick',
+				-- language_border = ' ',
+				-- language_left = '',
+				-- language_right = '',
+				-- width = 'block',
+				min_width = 45,
 			},
 			heading = {
-				sign = true,
-				-- icons = {},
+				width = 'block',
+				min_width = 45,
 			},
 			checkbox = {
 				enabled = true,
@@ -96,21 +102,10 @@ return {
 		lazy = true,
 		build = 'cd app ; npm install',
 		cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-
 		config = function()
 			vim.cmd([[do FileType]])
 		end,
-
-		ft = 'markdown',
-		keys = {
-			{
-				'<leader>cp',
-				ft = 'markdown',
-				'<cmd>MarkdownPreviewToggle<cr>',
-				desc = 'Markdown Preview',
-			},
-		},
-
+		keys = { { '<leader>cp', ft = 'markdown', '<cmd>MarkdownPreviewToggle<cr>', desc = 'Markdown Preview' } },
 		init = function()
 			vim.g.mkdp_filetypes = { 'markdown' }
 			vim.g.mkdp_command_for_global = 1
