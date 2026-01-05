@@ -118,6 +118,11 @@ return {
 						endpoint = 'https://api.githubcopilot.com/chat/completions',
 						secret = secrets.copilot_secret,
 					},
+					groq = {
+						disable = false,
+						endpoint = 'https://api.groq.com/openai/v1/chat/completions',
+						secret = secrets.groq_api_key,
+					}
 				},
 
 				agents = {
@@ -138,6 +143,24 @@ return {
 						command = true,
 						-- string with model name or table with model name and parameters
 						model = { model = 'gpt-5', temperature = 0.8, top_p = 1, n = 1 },
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require('gp.defaults').code_system_prompt,
+					},
+					{
+						provider = 'groq',
+						name = 'ChatGroq',
+						chat = true,
+						command = false,
+						model    = { model = "llama-3.1-8b-instant" },
+						-- system prompt (use this to specify the persona/role of the AI)
+						system_prompt = require('gp.defaults').chat_system_prompt,
+					},
+					{
+						provider = 'groq',
+						name = 'CodeGroq',
+						chat = false,
+						command = true,
+						model    = { model = "llama-3.1-8b-instant" },
 						-- system prompt (use this to specify the persona/role of the AI)
 						system_prompt = require('gp.defaults').code_system_prompt,
 					},
