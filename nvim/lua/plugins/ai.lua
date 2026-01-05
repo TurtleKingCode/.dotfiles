@@ -4,6 +4,7 @@ return {
 	{
 		'olimorris/codecompanion.nvim',
 		lazy = true,
+		enabled = false,
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'nvim-treesitter/nvim-treesitter',
@@ -15,23 +16,15 @@ return {
 			--   end,
 			-- },
 		},
-		opts = {},
-		config = function()
-			local config_opts = {
+		opts = {
 				llm = {
 					-- adapter = 'copilot',
 					-- adapter = 'gemini',
 				},
 				strategies = {
-					chat = {
-						adapter = 'gemini',
-					},
-					inline = {
-						adapter = 'gemini',
-					},
-					cmd = {
-						adapter = 'gemini',
-					},
+					chat = { adapter = 'gemini', },
+					inline = { adapter = 'gemini', },
+					cmd = { adapter = 'gemini', },
 				},
 				adapters = {
 					gemini = function()
@@ -65,8 +58,9 @@ return {
 						start_in_insert_mode = false, -- Open the chat buffer in insert mode?
 					},
 				},
-			}
-			require('codecompanion').setup(config_opts)
+			},
+		config = function(_, opts)
+			require('codecompanion').setup(opts)
 		end,
 
 		keys = {
@@ -97,9 +91,6 @@ return {
 		},
 	},
 
-	-- render markdown
-	{ 'MeanderingProgrammer/render-markdown.nvim', ft = { 'codecompanion' } },
-
 	-- 	-- blink.cmp: adding codecompanion
 	-- 	{
 	-- 		'saghen/blink.cmp',
@@ -116,7 +107,7 @@ return {
 	-- gp - custom
 	{
 		'robitx/gp.nvim',
-		lazy = false,
+		lazy = true,
 		enabled = true,
 		config = function()
 			local opts = {
@@ -128,21 +119,6 @@ return {
 						secret = secrets.copilot_secret,
 					},
 				},
-
-				-- The `providers` table configures AI completion/chat backends available to your Neovim setup.
-				-- Each key under `providers` represents a provider; you can enable/disable and tweak its settings.
-				--
-				-- Example keys:
-				--   - openai: configuration for OpenAI (currently commented out and would be disabled if enabled).
-				--   - copilot: configuration for GitHub Copilot Chat.
-				--
-				-- copilot fields:
-				--   - disable: set to `false` to enable Copilot; `true` would turn it off.
-				--   - endpoint: the API base URL Copilot uses for chat/completion requests.
-				--   - secret: your authentication token or a function returning it; here sourced from `secrets.copilot_secret`.
-				--
-				-- In practice, this tells your AI plugin to use GitHub Copilot Chat via the specified endpoint,
-				-- with credentials pulled from your `secrets` module, while keeping the provider enabled.
 
 				agents = {
 					{
@@ -288,21 +264,11 @@ return {
 					},
 				},
 			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				'MeanderingProgrammer/render-markdown.nvim',
-				opts = {
-					file_types = { 'markdown', 'Avante' },
-				},
-				ft = { 'markdown', 'Avante' },
-			},
 		},
 	},
 	{
 		'zbirenbaum/copilot.lua',
-		dependencies = {
-			'copilotlsp-nvim/copilot-lsp',
-		},
+		dependencies = { 'copilotlsp-nvim/copilot-lsp' },
 		cmd = 'Copilot',
 		event = 'InsertEnter',
 		config = function()
